@@ -27,7 +27,32 @@ let playRound = (playerSelection, computerSelection) => {
     }
 };
 
-let playerSelection = "Paper".toUpperCase();
-let computerSelection = getComputerChoice();
+let playGame = () => {
+    let computer = 0;
+    let player = 0;
+    let result = "";
+    for(let i = 0; i < 5; i++){
+        let playerSelection = prompt("Rock Paper or Scissors?").toUpperCase();
+        let computerSelection = getComputerChoice();
+        let resultRound = playRound(playerSelection, computerSelection);
+        console.log(resultRound);
+        if(resultRound.indexOf("Lose!") > 0){
+            computer++;
+        }else if(resultRound.indexOf("Win!" > 0)){
+            player++;
+        }
+    }
+    if(player > computer){
+        result = "The Winner is Player!";
+    }else if(computer > player){
+        result = "The Winner is Computer!";
+    }else{
+        result = "You Tied!"
+    }
+    console.log(result)
+}
 
-console.log(playRound(playerSelection, computerSelection));
+playGame();
+
+
+
