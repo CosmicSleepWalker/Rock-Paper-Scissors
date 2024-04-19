@@ -27,7 +27,36 @@ let playRound = (playerSelection, computerSelection) => {
     }
 };
 
-let playGame = () => {
+
+const btns = document.querySelectorAll("button");
+
+btns.forEach((btn) => {
+    btn.addEventListener("click", (event) => {
+        let selection = "";
+        switch(btn.id){
+            case "btn1":
+                selection = ROCK;
+                break;
+            case "btn2":
+                selection = PAPER;
+                break;
+            case "btn3":
+                selection = SCISSORS;
+                break;
+        }
+        const container = document.querySelector("#container");
+        const result = playRound(selection, getComputerChoice());
+        const content = document.createElement("div");
+        content.classList.add("content");
+        content.textContent = result; 
+        container.appendChild(content);
+    });
+
+});
+
+
+
+/*let playGame = () => {
     let computer = 0;
     let player = 0;
     let result = "";
@@ -52,7 +81,7 @@ let playGame = () => {
     console.log(result)
 }
 
-playGame();
+playGame();*/
 
 
 
