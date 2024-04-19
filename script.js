@@ -29,7 +29,8 @@ let playRound = (playerSelection, computerSelection) => {
 
 
 const btns = document.querySelectorAll("button");
-
+let lose = 0;
+let win = 0;
 btns.forEach((btn) => {
     btn.addEventListener("click", (event) => {
         let selection = "";
@@ -44,11 +45,27 @@ btns.forEach((btn) => {
                 selection = SCISSORS;
                 break;
         }
+
         const container = document.querySelector("#container");
         const result = playRound(selection, getComputerChoice());
+        if(result.indexOf("Win") > -1){
+            console.log("we're in here");
+            win++;
+        }else if(result.indexOf("Lose") > -1){
+            lose++;
+        }
         const content = document.createElement("div");
         content.classList.add("content");
         content.textContent = result; 
+        if(win === 5){
+            content.textContent  = `Player wins: ${win} - ${lose}`;
+            win = 0;
+            lose = 0;
+        }else if(lose === 5){
+            content.textContent =  `Computer wins: ${win} - ${lose}`;
+            win = 0;
+            lose = 0;
+        }
         container.appendChild(content);
     });
 
